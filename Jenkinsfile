@@ -20,16 +20,22 @@ version=1.0"""]);
 }
 
 def registerDownstream(ver) {
-  step([$class: 'RegisterReactorStep', scriptData: '''
-  
-  println "REACTOR: Consider: " + event.jobName;
-  println "event.eventProperties['version']";
 
-  if( event.jobFullName.startsWith("Upstream/") && event.eventProperties['version'] == ${ver} )
+String script =  """
+  
+  println "REACTOR(master): Consider: " + event.jobFullName;
+  println "I am looking for a version ${ver}";
+  println event.eventProperties['version'];
+  
+  if( event.jobFullName.startsWith("Upstream/") && event.eventProperties['version'] == "${ver}" )
     return true;
 
   return false;
-   ''' ]);
+   """;
+
+   println "Registering script : ${script}";
+
+  step([$class: 'RegisterReactorStep', scriptData: script ]);
 }
 
 def calculateUpstream(causes) {
