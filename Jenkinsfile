@@ -25,7 +25,7 @@ def registerDownstream(ver) {
   println "REACTOR: Consider: " + event.jobName;
   println "event.eventProperties['version']";
 
-  if( event.jobName.startsWith("Upstream") && event.eventProperties['version'] == ${ver} )
+  if( event.jobFullName.startsWith("Upstream/") && event.eventProperties['version'] == ${ver} )
     return true;
 
   return false;
