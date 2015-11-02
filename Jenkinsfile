@@ -2,7 +2,7 @@
 node() {
   
   // You could parse this out of a pom file, for example...
-  def iNeedUpstreamVersion = "1.0";
+  def iNeedUpstreamVersion = "2.0";
 
   registerDownstream(iNeedUpstreamVersion);
 
