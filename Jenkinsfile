@@ -40,9 +40,10 @@ String script =  """
   step([$class: 'RegisterReactorStep', scriptData: script ]);
 }
 
+@com.cloudbees.groovy.cps.NonCPS
 def calculateUpstream(causes) {
   def root = "http://jenkins/plugin/repository/project/";
-  def cause = causes.find { it instanceof com.nirima.reactor.ReactorCause };
+  def cause = causes.find() { x -> x instanceof com.nirima.reactor.ReactorCause };
 
   println "causes: ${causes}";
   println "cause: ${cause}";
