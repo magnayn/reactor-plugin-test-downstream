@@ -22,10 +22,11 @@ version=1.0"""]);
 def registerDownstream(ver) {
   step([$class: 'RegisterReactorStep', scriptData: """
   
-  println "REACTOR: Consider: " + event.jobName;
-  println "event.eventProperties['version']";
-
-  if( event.jobFullName.startsWith("Upstream/") && event.eventProperties['version'] == ${ver} )
+  println "REACTOR: Consider: " + event.jobFullName;
+  println "I am looking for a version ${ver}";
+  println event.eventProperties['version'];
+  
+  if( event.jobFullName.startsWith("Upstream/") && event.eventProperties['version'] == "${ver}"" )
     return true;
 
   return false;
