@@ -20,7 +20,7 @@ version=1.0"""]);
 }
 
 def registerDownstream(ver) {
-  step([$class: 'RegisterReactorStep', scriptData: '''
+  step([$class: 'RegisterReactorStep', scriptData: """
   
   println "REACTOR: Consider: " + event.jobName;
   println "event.eventProperties['version']";
@@ -29,7 +29,7 @@ def registerDownstream(ver) {
     return true;
 
   return false;
-   ''' ]);
+   """ ]);
 }
 
 def calculateUpstream(causes) {
